@@ -2,40 +2,47 @@
 
 using namespace std;
 
+void primeNumberFinder(int);
+
 int main()
 {
-	int PrimeCounter = 0 ;
-	int PrimeNumberNeeded ;
-	bool Isprime ;
-	
-	cout << "Please enter the Prime Needed: " ;
-	cin >> PrimeNumberNeeded ;
-	int TestNumber = 2 ;
+	int numberNeeded = 0;
+	cout << "Please enter the prime/fibonacci number needed: ";
+	cin >> numberNeeded;
 
-	while (PrimeCounter != PrimeNumberNeeded)
+	primeNumberFinder(numberNeeded);
+
+	system ("pause");
+	return 0;
+}
+
+void primeNumberFinder(int numberNeeded)
+{
+	int primeCounter = 0;
+	bool isPrime;
+	
+	int testNumber = 2;
+
+	while (primeCounter != numberNeeded)
 	{
-		Isprime = true ;
+		isPrime = true;
 		
-		for(int x=2;x<TestNumber;x++)
+		for(int x=2; x < testNumber; x++)
 		{
-			if(TestNumber%x == 0)
+			if(testNumber % x == 0)
 			{
-				Isprime = false ;
+				isPrime = false;
 			}
 		}
-		if (Isprime)
+		if (isPrime)
 		{
-			PrimeCounter++ ;
-                        //cout << PrimeCounter << "> " << TestNumber << " is prime." << endl;
-			
+			primeCounter++;			
 		}
-		TestNumber ++ ;
+		testNumber ++;
 	}
-	// end of while
-	if (PrimeCounter == PrimeNumberNeeded)
+
+	if (primeCounter == numberNeeded)
 	{
-		cout << "Prime counter is: " << PrimeCounter << "\nTest number is: "<< TestNumber-1<< endl;
+		cout << "The number (" << primeCounter << ") prime number is: "<< testNumber-1 << endl;
 	}
-	system ("pause") ;
-	return 0;
 }
