@@ -3,6 +3,7 @@
 using namespace std;
 
 void primeNumberFinder(int);
+unsigned long fibonacciFinder(unsigned long);
 
 int main()
 {
@@ -11,6 +12,7 @@ int main()
 	cin >> numberNeeded;
 
 	primeNumberFinder(numberNeeded);
+	cout << "The number (" << numberNeeded << ") fibonacci number is: " << fibonacciFinder(numberNeeded) << endl;
 
 	system ("pause");
 	return 0;
@@ -43,6 +45,18 @@ void primeNumberFinder(int numberNeeded)
 
 	if (primeCounter == numberNeeded)
 	{
-		cout << "The number (" << primeCounter << ") prime number is: "<< testNumber-1 << endl;
+		cout << "The number (" << primeCounter << ") prime number is: " << testNumber - 1 << endl;
+	}
+}
+
+unsigned long fibonacciFinder(unsigned long inputNumber)
+{
+	if ((0 == inputNumber) || (1 == inputNumber))
+	{
+			return inputNumber;
+	}
+	else
+	{
+		return fibonacciFinder(inputNumber - 1) + fibonacciFinder(inputNumber - 2);
 	}
 }
