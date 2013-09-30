@@ -1,62 +1,81 @@
 #include <iostream>
+#include <sstream>
+#include <math.h>
 
 using namespace std;
 
-void primeNumberFinder(int);
-unsigned long fibonacciFinder(unsigned long);
+int isPrime(int n)
+{
+  for(int x = 2; x <= sqrt(n); x++)
+  {
+    if(n % x == 0)
+    {
+      return false;
+    }
+  }
+  return true;
+}
+
+int countPrimes(int n)
+{
+  int primeCount = 0;
+  int prime;
+  for(int i = 2; primeCount < n; i++)
+  {
+    if(isPrime(i))
+    {
+      prime = i;
+      primeCount++;
+    }
+  }
+  return prime;
+}
+
+int fib(int n)
+{
+  if(n == 0)
+  {
+    return 0;
+  }
+  else if (n == 1)
+  {
+    return 1;
+  }
+  else
+  {
+    return fib(n - 1) + fib(n - 2);
+  }
+}
+
+string humanize(int n)
+{
+  stringstream result;
+  if(n % 10 == 1)
+  {
+    result << n << "st"; 
+  }
+  else if (n % 10 == 2)
+  {
+    result << n << "nd"; 
+  }
+  else if (n % 10 == 3)
+  {
+    result << n << "rd"; 
+  }
+  else
+  {
+    result << n << "th"; 
+  }
+  return result.str();
+}
 
 int main()
 {
-	int numberNeeded = 0;
-	cout << "Please enter the prime/fibonacci number needed: ";
-	cin >> numberNeeded;
-
-	primeNumberFinder(numberNeeded);
-	cout << "The number (" << numberNeeded << ") fibonacci number is: " << fibonacciFinder(numberNeeded) << endl;
-
-	system ("pause");
-	return 0;
-}
-
-void primeNumberFinder(int numberNeeded)
-{
-	int primeCounter = 0;
-	bool isPrime;
-	
-	int testNumber = 2;
-
-	while (primeCounter != numberNeeded)
-	{
-		isPrime = true;
-		
-		for(int x=2; x < testNumber; x++)
-		{
-			if(testNumber % x == 0)
-			{
-				isPrime = false;
-			}
-		}
-		if (isPrime)
-		{
-			primeCounter++;			
-		}
-		testNumber ++;
-	}
-
-	if (primeCounter == numberNeeded)
-	{
-		cout << "The number (" << primeCounter << ") prime number is: " << testNumber - 1 << endl;
-	}
-}
-
-unsigned long fibonacciFinder(unsigned long inputNumber)
-{
-	if ((0 == inputNumber) || (1 == inputNumber))
-	{
-			return inputNumber;
-	}
-	else
-	{
-		return fibonacciFinder(inputNumber - 1) + fibonacciFinder(inputNumber - 2);
-	}
+  int n;
+  cout << "Enter a number: " ;
+  cin >> n;
+  
+  cout << "The " << humanize(n) << " prime number is " << countPrimes(n) << "." << endl;
+  cout << "The " << humanize(n) << " Fibonacci number is " << fib(n) << "." << endl;
+  return 0;
 }
